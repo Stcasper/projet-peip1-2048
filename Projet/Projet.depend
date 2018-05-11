@@ -17,7 +17,7 @@
 1523225256 source:c:\workspace\projet peip1 2048\jeu-etudiants\dispo.cpp
 	"jeu.h"
 
-1524580219 c:\workspace\projet peip1 2048\jeu-etudiants\jeu.h
+1526031712 c:\workspace\projet peip1 2048\jeu-etudiants\jeu.h
 	<cstdlib>
 	<time.h>
 	<iostream>
@@ -31,7 +31,7 @@
 	<string>
 	<iostream>
 
-1524738832 source:c:\workspace\projet peip1 2048\jeu-etudiants\jeu.cpp
+1526031712 source:c:\workspace\projet peip1 2048\jeu-etudiants\jeu.cpp
 	"jeu.h"
 
 1523221656 source:/Users/robin/Desktop/projet peip1 2048/jeu-etudiants/dispo.cpp
