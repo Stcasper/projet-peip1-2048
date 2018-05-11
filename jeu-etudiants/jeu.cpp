@@ -238,6 +238,7 @@ int gauche(Grille &g) {
         for (size_t j =0; j<g.dim-1; j=j+1){// Pour chaque colonne (On lit deouis la gauche vu qu'on décale à gauche) (On s'arrête un cran avant la fin pour ne pas déborder du tableau)
             if (g.cases.at(j).at(i)==g.cases.at(j+1).at(i)&&g.cases.at(j).at(i)!=0){ // Si la valeur de la case est égale à la valeur de la case suivante et est non nulle
                 g.cases.at(j).at(i)=g.cases.at(j).at(i)*2; // On fusionne les deux cases dans la première
+                fusionPossible=true;
                 g.cases.at(j+1).at(i)=0; // On met un zéro dans la seconde
                 j=j+1; // On décale d'un indice pour éviter de traiter à nouveau la colonne d'après
             }
@@ -317,6 +318,7 @@ int haut(Grille &g) {
         for (size_t i =0; i<g.dim-1; i=i+1){// Pour chaque ligne (On lit deouis le haut vu qu'on décale en haut) (On s'arrête un cran avant la fin pour ne pas déborder du tableau)
             if (g.cases.at(j).at(i)==g.cases.at(j).at(i+1)&&g.cases.at(j).at(i)!=0){ // Si la valeur de la case est égale à la valeur de la case suivante et est non nulle
                 g.cases.at(j).at(i)=g.cases.at(j).at(i)*2; // On fusionne les deux cases dans la première
+                fusionPossible=true;
                 g.cases.at(j).at(i+1)=0; // On met un zéro dans la seconde
                 i=i+1; // On décale d'un indice pour éviter de traiter à nouveau la ligne d'après
             }
@@ -397,6 +399,7 @@ int bas(Grille &g) {
         for (size_t i = g.dim-1; i>0; i=i-1){// Pour chaque ligne (On lit deouis le bas vu qu'on décale en bas) (On s'arrête un cran avant la fin pour ne pas déborder du tableau)
             if (g.cases.at(j).at(i)==g.cases.at(j).at(i-1)&&g.cases.at(j).at(i)!=0){ // Si la valeur de la case est égale à la valeur de la case suivante et est non nulle
                 g.cases.at(j).at(i)=g.cases.at(j).at(i)*2; // On fusionne les deux cases dans la première
+                fusionPossible=true;
                 g.cases.at(j).at(i-1)=0; // On met un zéro dans la seconde
                 //i=i+1; // On décale d'un indice pour éviter de traiter à nouveau la ligne d'après
             }
