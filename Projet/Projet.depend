@@ -1,0 +1,76 @@
+# depslib dependency file v1.0
+1523221655 source:c:\users\gbesse\desktop\info\projet\projet peip1 2048\jeu-etudiants\dispo.cpp
+	"jeu.h"
+
+1523221662 c:\users\gbesse\desktop\info\projet\projet peip1 2048\jeu-etudiants\jeu.h
+	<cstdlib>
+	<time.h>
+	<iostream>
+	<vector>
+
+1523728693 
+
+1523221655 source:c:\users\gbesse\desktop\info\projet\projet peip1 2048\jeu-etudiants\test.cpp
+	"jeu.h"
+	<cctype>
+
+1523225256 source:c:\workspace\projet peip1 2048\jeu-etudiants\dispo.cpp
+	"jeu.h"
+
+1524580219 c:\workspace\projet peip1 2048\jeu-etudiants\jeu.h
+	<cstdlib>
+	<time.h>
+	<iostream>
+	<vector>
+	<iomanip>
+
+1524738960 source:c:\workspace\projet peip1 2048\jeu-etudiants\test.cpp
+	"jeu.h"
+	<cctype>
+	<vector>
+	<string>
+	<iostream>
+
+1524738832 source:c:\workspace\projet peip1 2048\jeu-etudiants\jeu.cpp
+	"jeu.h"
+
+1523221656 source:/Users/robin/Desktop/projet peip1 2048/jeu-etudiants/dispo.cpp
+	"jeu.h"
+
+1523728708 /Users/robin/Desktop/projet peip1 2048/jeu-etudiants/jeu.h
+	<cstdlib>
+	<time.h>
+	<iostream>
+	<vector>
+
+1523973323 source:/Users/robin/Desktop/projet peip1 2048/jeu-etudiants/jeu.cpp
+	"jeu.h"
+	<iomanip>
+
+1523973323 source:/Users/robin/Desktop/projet peip1 2048/jeu-etudiants/test.cpp
+	"jeu.h"
+	<cctype>
+	<vector>
+	<string>
+	<iostream>
+
+1523221656 source:c:\users\rlesaou\desktop\projet peip1 2048\jeu-etudiants\dispo.cpp
+	"jeu.h"
+
+1524576620 c:\users\rlesaou\desktop\projet peip1 2048\jeu-etudiants\jeu.h
+	<cstdlib>
+	<time.h>
+	<iostream>
+	<vector>
+	<iomanip>
+
+1525245268 source:c:\users\rlesaou\desktop\projet peip1 2048\jeu-etudiants\test.cpp
+	"jeu.h"
+	<cctype>
+	<vector>
+	<string>
+	<iostream>
+
+1525247631 source:c:\users\rlesaou\desktop\projet peip1 2048\jeu-etudiants\jeu.cpp
+	"jeu.h"
+
