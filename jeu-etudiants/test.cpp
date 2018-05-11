@@ -20,7 +20,9 @@ void reset(Grille &g) {
  * la fonction main.
  */
 bool teste1(Grille &g) {
-  vector<vector<size_t>> v ={ { 128, 4, 0, 0 }, { 2, 16, 4, 2 }, { 0, 0, 0, 0 }, { 2, 0, 0, 0} };
+  //vector<vector<size_t>> v ={ { 128, 4, 0, 0 }, { 2, 16, 4, 2 }, { 0, 0, 0, 0 }, { 2, 0, 0, 0} };
+  //vector<vector<size_t>> v ={ { 16, 8, 4, 4 }, { 4, 4, 8, 8 }, { 2, 0, 0, 2 }, { 2, 0, 2, 4} };
+  vector<vector<size_t>> v ={ { 2, 4, 2, 2 }, { 2, 4, 0, 0 }, { 4, 8, 0, 2 }, { 0, 8, 2, 4} };
   bool res;
   reset(g);	// reinitialiser la grille avant chargement.
   res = charge(g, v);
@@ -28,7 +30,7 @@ bool teste1(Grille &g) {
     cerr << "probleme de chargement !" << endl;
     return false;
   }
-  gauche(g);
+  //gauche(g);
   affiche(g);
   return true;
 }
@@ -65,6 +67,9 @@ int main() {
     if (lu == 'q' or lu == 'Q') break;
     if(lu=='d'){
         droite(g);
+    }
+    if (lu=='g'){
+        gauche(g);
     }
     // faire ce qu'il faut en fonction de ce que vaut la variable 'lu'
     affiche(g);
