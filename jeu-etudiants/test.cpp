@@ -71,6 +71,12 @@ int main() {
     if (lu=='g'){
         gauche(g);
     }
+    if (lu=='h'){
+        haut(g);
+    }
+    if (lu=='b'){
+        bas(g);
+    }
     // faire ce qu'il faut en fonction de ce que vaut la variable 'lu'
     affiche(g);
     cout<<"votre score est de "<<score(g)<< endl;

@@ -122,11 +122,20 @@ size_t i,j;
 }
 
 int droite(Grille &g) {
-
+bool fusionPossible = false;
+bool pasZero = false;
+bool mvmtPos = false;
 
 //décalage droite
     for (size_t i=0; i<g.dim;i=i+1){ //Pour chaque ligne
+        pasZero = false;
         for (size_t j =0; j<g.dim; j=j+1){// Pour chaque colonne
+            if (g.cases.at(j).at(i)!=0) {
+                pasZero = true;
+            }
+         if ((pasZero) and (g.cases.at(j).at(i)==0)) {
+            mvmtPos=true;
+         }
          if (g.cases.at(j).at(i)==0){ // Si la valeur de la case est égale à zéro
 
           // Création d'une ligne tampon
@@ -149,9 +158,10 @@ int droite(Grille &g) {
 
     // Fusion droite
     for (size_t i=0; i<g.dim;i=i+1){ //Pour chaque ligne
-        for (size_t j=3; j>0; j=j-1){// Pour chaque colonne (On lit deouis la droite vu qu'on décale à gauche) (On s'arrête un cran avant la fin pour ne pas déborder du tableau)
+        for (size_t j=g.dim-1; j>0; j=j-1){// Pour chaque colonne (On lit deouis la droite vu qu'on décale à gauche) (On s'arrête un cran avant la fin pour ne pas déborder du tableau)
             if (g.cases.at(j).at(i)==g.cases.at(j-1).at(i)&&g.cases.at(j).at(i)!=0){ // Si la valeur de la case est égale à la valeur de la case suivante et est non nulle
                 g.cases.at(j).at(i)=g.cases.at(j).at(i)*2; // On fusionne les deux cases dans la première
+                fusionPossible=true;
                 g.cases.at(j-1).at(i)=0; // On met un zéro dans la seconde
                 //j=j-1; // On décale d'un indice pour éviter de traiter à nouveau la colonne d'après
             }
@@ -177,7 +187,13 @@ int droite(Grille &g) {
     }
 
 
-  return -1; // a completer
+  if ((fusionPossible==false) and (mvmtPos==false)) {
+        return -1; // a completer
+  }
+  else {
+    ajout(g);
+    return vides(g);
+  }
 }
 
 int gauche(Grille &g) {
@@ -249,10 +265,138 @@ int gauche(Grille &g) {
 }
 
 int haut(Grille &g) {
+    int position_temp = 0;
+
+
+    //décalage haut
+    for (size_t j=0; j<g.dim;j=j+1){ //Pour chaque colonne
+
+        // Création d'une colonne tampon
+        vector<size_t> tampon;
+        tampon=vector<size_t>(g.dim);
+        position_temp = 0;
+
+        for (size_t i =0; i<g.dim; i=i+1){// Pour chaque colonne (On lit deouis le haut gauche vu qu'on décale en haut)
+            if (g.cases.at(j).at(i)!=0){ // Si la valeur de la case est différente de zéro
+                tampon.at(position_temp) = g.cases.at(j).at(i);
+                position_temp = position_temp+1;
+            }
+        }
+
+        for(size_t c=position_temp+1; c<g.dim; c=c+1){
+            tampon.at(c) = 0;
+        }
+
+        // Copie de la colonne tampon dans la grille
+        for(size_t w=0; w<g.dim;w=w+1){
+            g.cases.at(j).at(w)=tampon.at(w);
+        }
+    }
+
+    // Fusion haut
+    for (size_t j=0; j<g.dim;j=j+1){ //Pour chaque colonne
+        for (size_t i =0; i<g.dim-1; i=i+1){// Pour chaque ligne (On lit deouis le haut vu qu'on décale en haut) (On s'arrête un cran avant la fin pour ne pas déborder du tableau)
+            if (g.cases.at(j).at(i)==g.cases.at(j).at(i+1)&&g.cases.at(j).at(i)!=0){ // Si la valeur de la case est égale à la valeur de la case suivante et est non nulle
+                g.cases.at(j).at(i)=g.cases.at(j).at(i)*2; // On fusionne les deux cases dans la première
+                g.cases.at(j).at(i+1)=0; // On met un zéro dans la seconde
+                i=i+1; // On décale d'un indice pour éviter de traiter à nouveau la ligne d'après
+            }
+        }
+    }
+
+    //décalage haut pour éliminer les zéros créés par la fusion
+    for (size_t j=0; j<g.dim;j=j+1){ //Pour chaque colonne
+
+        // Création d'une colonne tampon
+        vector<size_t> tampon;
+        tampon=vector<size_t>(g.dim);
+        position_temp = 0;
+
+        for (size_t i =0; i<g.dim; i=i+1){// Pour chaque colonne (On lit deouis la gauche vu qu'on décale à gauche)
+            if (g.cases.at(j).at(i)!=0){ // Si la valeur de la case est différente de zéro
+                tampon.at(position_temp) = g.cases.at(j).at(i);
+                position_temp = position_temp+1;
+            }
+        }
+
+        for(size_t c=position_temp+1; c<g.dim; c=c+1){
+            tampon.at(c) = 0;
+        }
+
+        // Copie de la colonne tampon dans la grille
+        for(size_t w=0; w<g.dim;w=w+1){
+            g.cases.at(j).at(w)=tampon.at(w);
+        }
+    }
   return -1; // a completer
 }
 
 int bas(Grille &g) {
+    int position_temp = 0;
+
+
+    //décalage bas
+    for (size_t j=0; j<g.dim;j=j+1){ //Pour chaque colonne
+
+        // Création d'une colonne tampon
+        vector<size_t> tampon;
+        tampon=vector<size_t>(g.dim);
+        position_temp = g.dim;
+
+        for (size_t i =g.dim; i>0; i=i-1){// Pour chaque colonne (On lit deouis le baz gauche vu qu'on décale en bas)
+            if (g.cases.at(j).at(i-1)!=0){ // Si la valeur de la case est différente de zéro
+                tampon.at(position_temp-1) = g.cases.at(j).at(i-1);
+                position_temp = position_temp-1;
+            }
+        }
+
+        for(size_t c=position_temp; c>0; c=c-1){
+            tampon.at(c-1) = 0;
+        }
+
+        // Copie de la colonne tampon dans la grille
+        for(size_t w=0; w<g.dim;w=w+1){
+            g.cases.at(j).at(w)=tampon.at(w);
+        }
+    }
+
+
+    // Fusion bas
+    for (size_t j=0; j<g.dim;j=j+1){ //Pour chaque colonne
+        for (size_t i = g.dim-1; i>0; i=i-1){// Pour chaque ligne (On lit deouis le bas vu qu'on décale en bas) (On s'arrête un cran avant la fin pour ne pas déborder du tableau)
+            if (g.cases.at(j).at(i)==g.cases.at(j).at(i-1)&&g.cases.at(j).at(i)!=0){ // Si la valeur de la case est égale à la valeur de la case suivante et est non nulle
+                g.cases.at(j).at(i)=g.cases.at(j).at(i)*2; // On fusionne les deux cases dans la première
+                g.cases.at(j).at(i-1)=0; // On met un zéro dans la seconde
+                //i=i+1; // On décale d'un indice pour éviter de traiter à nouveau la ligne d'après
+            }
+        }
+    }
+
+    //décalage bas pour éliminer les zéros créés par la fusion
+    for (size_t j=0; j<g.dim;j=j+1){ //Pour chaque colonne
+
+        // Création d'une colonne tampon
+        vector<size_t> tampon;
+        tampon=vector<size_t>(g.dim);
+        position_temp = g.dim;
+
+        for (size_t i =g.dim; i>0; i=i-1){// Pour chaque colonne (On lit deouis le baz gauche vu qu'on décale en bas)
+            if (g.cases.at(j).at(i-1)!=0){ // Si la valeur de la case est différente de zéro
+                tampon.at(position_temp-1) = g.cases.at(j).at(i-1);
+                position_temp = position_temp-1;
+            }
+        }
+
+        for(size_t c=position_temp; c>0; c=c-1){
+            tampon.at(c-1) = 0;
+        }
+
+        // Copie de la colonne tampon dans la grille
+        for(size_t w=0; w<g.dim;w=w+1){
+            g.cases.at(j).at(w)=tampon.at(w);
+        }
+    }
+
   return -1; // a completer
 }
 
@@ -273,4 +417,23 @@ void affiche (const Grille &g) { //ok
     cout << '*';
     }
     cout<<endl;
+}
+
+void ajout (Grille &g) {
+  size_t nouvelle_case , i, j, position ,k;
+  position=place(g);
+  nouvelle_case=nouvelle(g);
+  j=0;
+
+  for (i=0 ; i<g.dim;i=i+1){
+    for(k=0; k<g.dim;k=k+1){  // on parcour la grille.
+
+        if (g.cases.at(k).at(i)==0){  // on test si la case est vide// modifié
+            j=j+1;
+            if (j==position){ // si on est a la bonne position on copie la nouvelle case dans la grille
+                g.cases.at(k).at(i)=nouvelle_case;//modifié
+            }
+        }
+    }
+  }
 }

@@ -41,6 +41,7 @@ size_t proportion(const Grille &g), dimension(const Grille &g);
 size_t score(const Grille &g), vides(const Grille &g), cible(const Grille &g);
 size_t nouvelle(const Grille &g), place(const Grille &g);
 void resetRand(bool mode);
+void ajout(Grille &g);
 
 /* ajouter ici les en-tetes des fonctions qui sont definies dans un fichier
  * et utilisees dans un autre
